@@ -1,0 +1,24 @@
+class Estudiante:
+    def __init__(self, nombre, notas):
+        """
+        """
+        self.nombre = nombre
+        self.notas = notas
+
+    def calcular_promedio(self):
+        """
+        """
+        if len(self.notas) == 0:
+            return 0
+        return sum(self.notas) / len(self.notas)
+
+    def mostrar_informacion(self):
+        """
+        """
+        print(f"Estudiante: {self.nombre}")
+        print(f"Notas: {self.notas}")
+        print(f"Promedio: {self.calcular_promedio():.2f}")
+
+# Ejemplo de uso:
+estudiante1 = Estudiante(nombre="samy arias", notas=[85, 90, 78, 92])
+estudiante1.mostrar_informacion()

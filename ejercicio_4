@@ -1,0 +1,42 @@
+import hashlib
+
+class Usuario:
+    usuarios_registrados = {}
+    def __init__(self, nombre_usuario, contraseña):
+        """
+        """
+        self.nombre_usuario = nombre_usuario
+        self.contraseña = self._encriptar_contraseña(contraseña)
+        Usuario.usuarios_registrados[nombre_usuario] = self.contraseña
+
+    def _encriptar_contraseña(self, contraseña):
+        """
+        """
+        return hashlib.sha256(contraseña.encode()).hexdigest()
+
+    @classmethod
+    def iniciar_sesion(cls, nombre_usuario, contraseña):
+        """
+
+        """
+        contraseña_encriptada = hashlib.sha256(contraseña.encode()).hexdigest()
+        if nombre_usuario in cls.usuarios_registrados and cls.usuarios_registrados[nombre_usuario] == contraseña_encriptada:
+            return f"Inicio de sesión exitoso. ¡Bienvenido, {nombre_usuario}!"
+        else:
+            return "Nombre de usuario o contraseña incorrectos."
+
+    def cambiar_contraseña(self, contraseña_nueva):
+        """
+        """
+        self.contraseña = self._encriptar_contraseña(contraseña_nueva)
+        Usuario.usuarios_registrados[self.nombre_usuario] = self.contraseña
+        print("contraseña actualizada con éxito.")
+
+usuario1 = Usuario("samy arias", "samy2256")
+usuario2 = Usuario("ana_lopez", "contraseña456")
+
+print(Usuario.iniciar_sesion("samy arias", "samy2256"))
+print(Usuario.iniciar_sesion("ana_lopez", "incorrecta"))
+
+usuario1.cambiar_contraseña("nuevaClave789")
+print(Usuario.iniciar_sesion("samy_arias", "samy1234"))

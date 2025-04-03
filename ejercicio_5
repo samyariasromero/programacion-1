@@ -1,0 +1,63 @@
+class Menu:
+    def __init__(self):
+        """
+        """
+        self.opciones = {
+            "1": self.opcion1,
+            "2": self.opcion2,
+            "3": self.opcion3,
+            "4": self.salir
+        }
+
+    def mostrar_menu(self):
+        """
+        """
+        print("\nMENÚ PRINCIPAL")
+        print("1. Opción 1: Saludar")
+        print("2. Opción 2: Mostrar mensaje")
+        print("3. Opción 3: Sumar dos números")
+        print("4. Salir")
+
+    def ejecutar(self):
+        """
+        """
+        while True:
+            self.mostrar_menu()
+            opcion = input("Seleccione una opción: ")
+            accion = self.opciones.get(opcion)
+
+            if accion:
+                accion()
+            else:
+                print("Opción no válida. Intente nuevamente.")
+
+    def opcion1(self):
+        """
+        """
+        nombre = input("Ingrese su nombre: ")
+        print(f"Hola, {nombre}!")
+
+    def opcion2(self):
+        """
+        """
+        print("Este es un mensaje de prueba dentro del menú.")
+
+    def opcion3(self):
+        """
+        """
+        try:
+            num1 = float(input("Ingrese el primer número: "))
+            num2 = float(input("Ingrese el segundo número: "))
+            print(f"La suma de {num1} + {num2} es {num1 + num2}")
+        except ValueError:
+            print("Error: Debe ingresar valores numéricos.")
+
+    def salir(self):
+        """
+        """
+        print("Gracias por usar el programa Hasta luego.")
+        exit()
+
+if __name__ == "__main__":
+    menu = Menu()
+    menu.ejecutar()

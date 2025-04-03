@@ -1,0 +1,30 @@
+class Factura:
+    def __init__(self):
+        """
+        """
+        self.productos = []
+
+    def agregar_producto(self, nombre, precio, cantidad=1):
+        """
+        """
+        self.productos.append({"nombre": nombre, "precio": precio, "cantidad": cantidad})
+
+    def calcular_total(self):
+        """
+        """
+        return sum(item["precio"] * item["cantidad"] for item in self.productos)
+
+    def mostrar_factura(self):
+        """
+        """
+        print("FACTURA")
+        for item in self.productos:
+            print(f"{item['nombre']} - ${item['precio']:.2f} x {item['cantidad']} = ${item['precio'] * item['cantidad']:.2f}")
+
+        print(f"TOTAL A PAGAR: ${self.calcular_total():.2f}")
+
+factura1 = Factura()
+factura1.agregar_producto("Laptop", 1200.00, 1)
+factura1.agregar_producto("Mouse", 25.50, 2)
+factura1.agregar_producto("Teclado", 45.99, 1)
+factura1.mostrar_factura()
